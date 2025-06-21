@@ -432,7 +432,6 @@ class _user_cardState extends State<user_card> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 90,
-      width: 400,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30.0),
         child: ColoredBox(
