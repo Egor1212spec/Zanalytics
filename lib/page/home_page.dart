@@ -469,7 +469,7 @@ class _user_cardState extends State<user_card> {
                       MainAxisAlignment.center,
                   children: [
                     Text(
-                      "1 876,31 ₽",
+                      "1 876,323 ₽",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
