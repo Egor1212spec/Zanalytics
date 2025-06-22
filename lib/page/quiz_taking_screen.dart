@@ -1,5 +1,3 @@
-// lib/quiz_taking_screen.dart (Или ваш путь к файлу)
-
 import 'package:flutter/material.dart';
 import 'package:zanalytics/model/quiz_models.dart';
 
@@ -80,12 +78,8 @@ class _QuizTakingScreenState
             TextButton(
               child: const Text('К списку квизов'),
               onPressed: () {
-                Navigator.of(
-                  context,
-                ).pop(); // Закрыть диалог
-                Navigator.of(
-                  context,
-                ).pop(); // Вернуться на экран выбора
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
           ],
@@ -94,7 +88,6 @@ class _QuizTakingScreenState
     );
   }
 
-  // <-- УЛУЧШЕНИЕ: Исправленная логика цвета кнопок
   Color _getButtonColor(int index) {
     if (_selectedAnswerIndex == null) {
       return Colors.orange;
@@ -107,8 +100,7 @@ class _QuizTakingScreenState
     if (index == correctIndex) {
       return Colors.green;
     } else if (index != correctIndex) {
-      return Colors
-          .red; // Выбранный неправильный ответ - красный
+      return Colors.red;
     }
 
     return Colors.blue;

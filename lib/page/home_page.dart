@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.pushNamed(
         context,
         '/friends',
-        arguments: widget.user,
+        // arguments: widget.user,
       );
     }
   }
@@ -221,20 +221,15 @@ class _operationState extends State<operation> {
   @override
   Widget build(BuildContext context) {
     String x = "1 679";
-    return SizedBox(
-      width: 180,
-      height: 140,
+    return Expanded(
+      flex: 5,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30.0),
         child: ColoredBox(
           color: const Color.fromARGB(255, 33, 31, 31),
           child: Padding(
-            padding: const EdgeInsets.only(
-              top: 8.0,
-              left: 8.0,
-              right: 8.0,
-              bottom: 8.0,
-            ),
+            padding: const EdgeInsets.all(12),
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -285,20 +280,14 @@ class bonus extends StatefulWidget {
 class _bonusState extends State<bonus> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 140,
-      height: 140,
+    return Expanded(
+      flex: 3,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30.0),
         child: ColoredBox(
           color: const Color.fromARGB(255, 33, 31, 31),
           child: Padding(
-            padding: EdgeInsets.only(
-              top: 8.0,
-              right: 8.0,
-              left: 8.0,
-              bottom: 8.0,
-            ),
+            padding: EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

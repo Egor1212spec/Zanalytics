@@ -1,23 +1,15 @@
-// lib/data/mock_data_repository.dart
-
 import 'package:flutter/material.dart';
 import 'package:zanalytics/model/achivment.dart';
 import 'package:zanalytics/model/chat_message.dart';
 import 'package:zanalytics/model/user_profile_data.dart';
-// <-- Убедитесь, что все пути к моделям правильные
 
 class MockDataRepository {
-  // Статическое поле для хранения "базы данных" в памяти,
-  // чтобы изменения (новые сообщения) сохранялись между экранами.
   static final List<UserProfileData> _friendsCache =
       _generateMockFriends();
-
-  // Публичный метод для получения друзей
   List<UserProfileData> getFriends() {
     return _friendsCache;
   }
 
-  // Теперь это статический приватный метод
   static List<UserProfileData> _generateMockFriends() {
     var anna = UserProfileData("Анна");
     anna.addAchievement(

@@ -34,7 +34,6 @@ class UserProfileData {
   }
 
   void addChatMessage(ChatMessage message) {
-    // <-- Добавьте этот метод
     chatHistory.add(message);
   }
 }

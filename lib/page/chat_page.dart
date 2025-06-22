@@ -1,17 +1,13 @@
-// lib/chat_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:zanalytics/model/chat_message.dart';
 import 'package:zanalytics/model/user_profile_data.dart';
 import 'dart:async';
 
-import 'package:zanalytics/page/quiz_taking_screen.dart'; // для Future.delayed
+import 'package:zanalytics/page/quiz_taking_screen.dart';
 
 class ChatPage extends StatefulWidget {
   final UserProfileData friendProfile;
-
   const ChatPage({super.key, required this.friendProfile});
-
   @override
   State<ChatPage> createState() => _ChatPageState();
 }
@@ -21,7 +17,6 @@ class _ChatPageState extends State<ChatPage> {
       TextEditingController();
   final ScrollController _scrollController =
       ScrollController();
-
   @override
   void dispose() {
     _textController.dispose();
@@ -31,8 +26,6 @@ class _ChatPageState extends State<ChatPage> {
 
   void _sendMessage() {
     if (_textController.text.trim().isEmpty) return;
-
-    // Используем новый конструктор ChatMessage.text
     final message = ChatMessage.text(
       text: _textController.text.trim(),
       timestamp: DateTime.now(),
@@ -43,19 +36,13 @@ class _ChatPageState extends State<ChatPage> {
       widget.friendProfile.addChatMessage(message);
       _textController.clear();
     });
-
-    // Прокрутка вниз после отправки
     _scrollToBottom();
     _simulateFriendReply();
   }
 
-  // Имитация ответа друга для наглядности
   void _simulateFriendReply() {
     Future.delayed(const Duration(seconds: 2), () {
-      if (!mounted)
-        return; // Проверка, что виджет все еще на экране
-
-      // Здесь также используем новый конструктор
+      if (!mounted) return;
       final reply = ChatMessage.text(
         text: "Интересная мысль! Надо будет проверить.",
         timestamp: DateTime.now(),
@@ -69,9 +56,6 @@ class _ChatPageState extends State<ChatPage> {
     });
   }
 
-  // Имитация ответа друга для наглядности
-
-  // Плавная прокрутка к последнему сообщению
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
@@ -90,15 +74,10 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         title: Text(widget.friendProfile.name),
         actions: <Widget>[
-          // Добавляем наш новый анимированный виджет
           Padding(
-            padding: const EdgeInsets.only(
-              right: 16.0,
-            ), // Отступ справа
+            padding: const EdgeInsets.only(right: 16.0),
             child: Center(
-              child: StreakFireIcon(
-                streakCount: 1,
-              ), // Здесь будет ваша цифра
+              child: StreakFireIcon(streakCount: 1),
             ),
           ),
         ],
@@ -114,15 +93,11 @@ class _ChatPageState extends State<ChatPage> {
               itemBuilder: (context, index) {
                 final message =
                     widget.friendProfile.chatHistory[index];
-
-                // <-- НОВАЯ ЛОГИКА ОТОБРАЖЕНИЯ -->
                 if (message.type == MessageType.quiz) {
-                  // Если сообщение - это квиз, показываем специальный виджет
                   return _QuizMessageBubble(
                     message: message,
                   );
                 } else {
-                  // Иначе показываем обычное текстовое сообщение
                   return _ChatMessageBubble(
                     message: message,
                   );
@@ -136,7 +111,6 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  // Виджет для поля ввода
   Widget _buildMessageComposer() {
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -181,7 +155,6 @@ class _ChatPageState extends State<ChatPage> {
   }
 }
 
-// Отдельный виджет для "пузыря" сообщения
 class _ChatMessageBubble extends StatelessWidget {
   final ChatMessage message;
   const _ChatMessageBubble({required this.message});

@@ -1,44 +1,11 @@
-// final List<Achievement> achievements = const [
-//   Achievement(
-//     name: "Первый шаг",
-//     description: "Успешно зарегестрироваться.",
-//     iconData: Icons.flag_circle,
-//   ),
-//   Achievement(
-//     name: "Коллекционер",
-//     description: "Собрать 10 редких предметов.",
-//     iconData: Icons.inventory_2,
-//   ),
-//   Achievement(
-//     name: "Исследователь",
-//     description: "Посетить 5 разных локаций.",
-//     iconData: Icons.explore,
-//   ),
-//   Achievement(
-//     name: "Непобедимый",
-//     description: "Пройти уровень без получения урона.",
-//     iconData: Icons.shield,
-//   ),
-//   Achievement(
-//     name: "Мастер на все руки",
-//     description: "Создать 50 уникальных предметов.",
-//     iconData: Icons.construction,
-//   ),
-//   Achievement(
-//     name: "Богач",
-//     description: "Накопить 10,000 золота.",
-//     iconData: Icons.monetization_on,
-//   ),
-// ];
-
 import 'package:flutter/material.dart';
 import 'package:zanalytics/model/achivment.dart';
+import 'package:zanalytics/model/settings_model.dart';
 import 'package:zanalytics/model/user_profile_data.dart';
 import 'package:zanalytics/page/chat_page.dart';
 
 class ProfilePage extends StatefulWidget {
   final UserProfileData userProfile;
-
   const ProfilePage({required this.userProfile, super.key});
 
   @override
@@ -46,6 +13,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final Settings settings = Settings.instance;
   late final List<Achievement> achievements =
       widget.userProfile.achievements;
 
@@ -79,36 +47,36 @@ class _ProfilePageState extends State<ProfilePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ), // <-- Добавим отступ
-                // --- НОВАЯ КНОПКА ДЛЯ ПЕРЕХОДА В ЧАТ ---
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChatPage(
-                          friendProfile: widget.userProfile,
+                const SizedBox(height: 16),
+
+                if (Settings.instance.user !=
+                    widget.userProfile)
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChatPage(
+                            friendProfile:
+                                widget.userProfile,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.chat_bubble_outline,
-                  ),
-                  label: const Text('Написать сообщение'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.amber[800],
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        20,
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.chat_bubble_outline,
+                    ),
+                    label: const Text('Написать сообщение'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.amber[800],
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          20,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                // ------------------------------------
               ],
             ),
           ),

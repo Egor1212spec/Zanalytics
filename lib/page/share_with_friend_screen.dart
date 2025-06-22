@@ -1,5 +1,3 @@
-// lib/share_with_friend_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:zanalytics/data/mock_data_repository.dart';
 import 'package:zanalytics/model/quiz_models.dart';
@@ -21,25 +19,17 @@ class ShareWithFriendScreen extends StatefulWidget {
 
 class _ShareWithFriendScreenState
     extends State<ShareWithFriendScreen> {
-  // В реальном приложении этот список должен приходить из state-менеджера,
-  // а не генерироваться заново. Для примера - это приемлемо.
   final List<UserProfileData> _friends =
       MockDataRepository().getFriends();
-
   void _sendQuizToFriend(UserProfileData friend) {
-    // Создаем сообщение типа "квиз"
     final quizMessage = ChatMessage.quiz(
       quiz: widget.quizToShare,
       timestamp: DateTime.now(),
       isSentByMe: true,
     );
-
-    // Добавляем сообщение в историю чата друга
     setState(() {
       friend.addChatMessage(quizMessage);
     });
-
-    // Показываем подтверждение и закрываем экран
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(

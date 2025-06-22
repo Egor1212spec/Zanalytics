@@ -37,14 +37,11 @@ class _QuizSelectionScreenState
   }
 
   void _onItemTapped(int index) {
-    // Обновляем состояние, чтобы BottomNavigationBar перерисовался
     setState(() {
       _selectedIndex = index;
     });
 
     if (index == 0) {
-      // Предполагаем, что есть главный экран, на который можно вернуться
-      // Если это корневой экран для этой вкладки, то можно ничего не делать или использовать Navigator.popUntil
       Navigator.popAndPushNamed(context, '/');
     }
     if (index == 1) {
@@ -115,8 +112,7 @@ class _QuizSelectionScreenState
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-        onTap:
-            _onItemTapped, // Передаем метод без аргументов
+        onTap: _onItemTapped,
       ),
     );
   }

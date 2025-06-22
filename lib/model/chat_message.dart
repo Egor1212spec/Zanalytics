@@ -1,21 +1,14 @@
-// lib/model/chat_message.dart
+import 'package:zanalytics/model/quiz_models.dart';
 
-import 'package:zanalytics/model/quiz_models.dart'; // <-- Добавьте импорт квиза
-
-// 1. Enum для определения типа сообщения
 enum MessageType { text, quiz }
 
 class ChatMessage {
-  final String? text; // Текст теперь опционален
-  final Quiz? quiz; // Поле для квиза тоже опционально
-  final MessageType type; // Тип сообщения обязателен
+  final String? text;
+  final Quiz? quiz;
+  final MessageType type;
 
   final DateTime timestamp;
   final bool isSentByMe;
-
-  // 2. Создаем два конструктора для удобства
-
-  // Конструктор для текстовых сообщений
   ChatMessage.text({
     required this.text,
     required this.timestamp,
@@ -23,7 +16,6 @@ class ChatMessage {
   }) : type = MessageType.text,
        quiz = null;
 
-  // Конструктор для сообщений с квизом
   ChatMessage.quiz({
     required this.quiz,
     required this.timestamp,

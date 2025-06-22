@@ -1,8 +1,6 @@
-// lib/story_widgets.dart
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 
-// --- Виджет для сторис "Топ трат" ---
 class TopExpensesStoryWidget extends StatelessWidget {
   final Map<String, dynamic> data;
 
@@ -13,7 +11,6 @@ class TopExpensesStoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Получаем данные из карты
     final String title =
         data['title'] ?? 'Твои топ-3 траты на неделе:';
     final List<Map<String, String>> expenses =
@@ -65,7 +62,6 @@ class TopExpensesStoryWidget extends StatelessWidget {
   }
 }
 
-// --- Виджет для сторис "Прогресс по цели" ---
 class GoalProgressStoryWidget extends StatelessWidget {
   final Map<String, dynamic> data;
 
@@ -76,7 +72,6 @@ class GoalProgressStoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Получаем данные
     final String title =
         data['title'] ?? 'Ты почти у цели!';
     final String goalIcon = data['goalIcon'] ?? '👟';
@@ -144,7 +139,6 @@ class GoalProgressStoryWidget extends StatelessWidget {
   }
 }
 
-// --- Виджет для сторис "Ачивка" с анимацией конфетти ---
 class AchievementStoryWidget extends StatefulWidget {
   final Map<String, dynamic> data;
   const AchievementStoryWidget({
@@ -167,7 +161,6 @@ class _AchievementStoryWidgetState
     _confettiController = ConfettiController(
       duration: const Duration(seconds: 2),
     );
-    // Запускаем анимацию сразу при показе виджета
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _confettiController.play();
     });
@@ -222,7 +215,7 @@ class _AchievementStoryWidgetState
             ),
           ),
         ),
-        // Виджет Конфетти
+
         ConfettiWidget(
           confettiController: _confettiController,
           blastDirectionality:
@@ -236,7 +229,6 @@ class _AchievementStoryWidgetState
             Colors.purple,
           ],
           createParticlePath: (size) {
-            // можно кастомизировать форму частиц
             return Path()..addOval(
               Rect.fromCircle(
                 center: Offset.zero,

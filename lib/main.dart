@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zanalytics/model/achivment.dart';
+import 'package:zanalytics/model/settings_model.dart';
 import 'package:zanalytics/model/user_profile_data.dart';
 import 'package:zanalytics/page/fin_story_screen.dart';
 import 'package:zanalytics/page/friends_list_page.dart';
@@ -14,6 +15,7 @@ void main() {
     description: "Успешная регистрация",
     iconData: Icons.wb_sunny,
   );
+  Settings.initialize(user);
   user.addAchievement(firstAchievement);
   runApp(MyApp(user: user));
 }
